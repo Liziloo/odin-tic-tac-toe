@@ -1,4 +1,4 @@
-function Gameboard() {
+const board =  (function() {
     const rows = 3;
     const cols = 3;
     const board = [];
@@ -24,11 +24,11 @@ function Gameboard() {
     // Print board
     const printBoard = () => {
         const boardWithCellValues = board.map((row) => row.map((cell) => cell.getValue()));
-        console.log("board print 1", boardWithCellValues);
+        console.log(boardWithCellValues);
     };
 
     return { getBoard, checkSquare, printBoard };
-}
+})();
 
 function Cell() {
     let value = '';
@@ -45,20 +45,15 @@ function Cell() {
     };
 }
 
-function GameController(
-    playerOneName = "Player One",
-    playerTwoName = "Player Two"
-) {
-
-    const board = Gameboard();
+const game = (function () {
 
     const players = [
         {
-            name: playerOneName,
+            name: 'Player One',
             symbol: 'X'
         },
         {
-            name: playerTwoName,
+            name: 'Player Two',
             symbol: 'O'
         }
     ];
@@ -91,6 +86,8 @@ function GameController(
         playRound,
         getActivePlayer
     };
-};
+})();
 
-const game = GameController();
+function ScreenController() {
+    
+}
