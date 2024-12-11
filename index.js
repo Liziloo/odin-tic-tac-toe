@@ -103,14 +103,17 @@ const game = (function () {
 
         refreshedBoard.forEach((row, index) => {
             const rowNumber = index;
+            const newRow = document.createElement('div');
+            newRow.classList.add('row');
             row.forEach((cell, index) => {
                 const cellButton = document.createElement('button');
                 cellButton.classList.add('cell');
                 cellButton.dataset.column = index;
                 cellButton.dataset.row = rowNumber;
                 cellButton.textContent = cell.getValue();
-                boardDiv.appendChild(cellButton);
-            })            
+                newRow.appendChild(cellButton);
+            });
+            boardDiv.appendChild(newRow);      
         })
     }
 
