@@ -88,6 +88,42 @@ const game = (function () {
     };
 })();
 
-function ScreenController() {
-    
-}
+(function() {
+
+    const playerTurnDiv = document.querySelector('.turn');
+    const boardDiv = document.querySelector('.board');
+
+    const updateScreen = () => {
+        boardDiv.textContent = '';
+
+        const refreshedBoard = board.getBoard();
+        const activePlayer = game.getActivePlayer();
+
+        playerTurnDiv.textContent = `${activePlayer.name}'s turn.`;
+
+        refreshedBoard.forEach((row, index) => {
+            const rowNumber = index;
+            row.forEach((cell, index) => {
+                const cellButton = document.createElement('button');
+                cellButton.classList.add('cell');
+                cellButton.dataset.column = index;
+                cellButton.dataset.row = rowNumber;
+                cellButton.textContent = cell.getValue();
+                boardDiv.appendChild(cellButton);
+            })            
+        })
+    }
+
+    function clickHandlerBoard(e) {
+        const selectedRow = e.target.dataset.row;
+        const selectedColumn = e.target.dataset.column;
+        if (!selectedColumn || !selectedRow) return;
+
+        game.playRound(selectedRow, selectedColumn);
+        updateScreen();
+    }
+
+    boardDiv.addEventListener('click', clickHandlerBoard);
+
+    updateScreen();
+})();
