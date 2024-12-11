@@ -134,6 +134,7 @@ const game = (function () {
             playerTurnDiv.textContent = `${activePlayer.name}'s turn.`;
         } else {
             playerTurnDiv.textContent = 'Game Over!!!'
+            boardDiv.removeEventListener('click', clickHandlerBoard);
         }
 
         refreshedBoard.forEach((row, index) => {
