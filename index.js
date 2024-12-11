@@ -36,13 +36,42 @@ const board =  (function() {
         } else {return};
     };
 
+    const checkWin = () => {
+        const boardWithCellValues = board.map((row) => row.map((cell) => cell.getValue()));
+        
+        // Check for horizontal win
+        for (row of boardWithCellValues) {
+            if ((row[0] === row[1] && row[1] === row[2]) && (row[0] !== '')) {
+                console.log('winner!');
+                return true;
+            }
+        }
+
+        // Check for vertical win
+        for (let i = 0; i < 3; i++) {
+            if ((boardWithCellValues[0][i] === boardWithCellValues[1][i] && boardWithCellValues[1][i] === boardWithCellValues[2][i]) && boardWithCellValues[0][i] !== '') {
+                console.log('winner!');
+                return true;
+            }
+        }
+        
+        
+        // Check for diagonal win
+        if (((boardWithCellValues[0][0] === boardWithCellValues[1][1] && boardWithCellValues[1][1] === boardWithCellValues[2][2]) || 
+            (boardWithCellValues[0][2] === boardWithCellValues[1][1] && boardWithCellValues[1][1] === boardWithCellValues[2][0])) && 
+            boardWithCellValues[1][1] !== '') {
+            console.log('winner!');
+            return true;
+        }
+    }
+
     // Print board
     const printBoard = () => {
         const boardWithCellValues = board.map((row) => row.map((cell) => cell.getValue()));
         console.log(boardWithCellValues);
     };
 
-    return { getBoard, checkSquare, printBoard };
+    return { getBoard, checkSquare, checkWin, printBoard };
 })();
 
 const game = (function () {
@@ -99,7 +128,13 @@ const game = (function () {
         const refreshedBoard = board.getBoard();
         const activePlayer = game.getActivePlayer();
 
-        playerTurnDiv.textContent = `${activePlayer.name}'s turn.`;
+        const gameEnd = board.checkWin();
+
+        if (!gameEnd) {
+            playerTurnDiv.textContent = `${activePlayer.name}'s turn.`;
+        } else {
+            playerTurnDiv.textContent = 'Game Over!!!'
+        }
 
         refreshedBoard.forEach((row, index) => {
             const rowNumber = index;
