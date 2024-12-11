@@ -51,14 +51,14 @@ const board =  (function() {
         }
         if (tieFound) {
             console.log('tie!')
-            return true;
+            return 'tie';
         }
         
         // Check for horizontal win
         for (row of boardWithCellValues) {
             if ((row[0] === row[1] && row[1] === row[2]) && (row[0] !== '')) {
                 console.log('winner!');
-                return true;
+                return 'win';
             }
         }
 
@@ -66,7 +66,7 @@ const board =  (function() {
         for (let i = 0; i < 3; i++) {
             if ((boardWithCellValues[0][i] === boardWithCellValues[1][i] && boardWithCellValues[1][i] === boardWithCellValues[2][i]) && boardWithCellValues[0][i] !== '') {
                 console.log('winner!');
-                return true;
+                return 'win';
             }
         }
         
@@ -76,7 +76,7 @@ const board =  (function() {
             (boardWithCellValues[0][2] === boardWithCellValues[1][1] && boardWithCellValues[1][1] === boardWithCellValues[2][0])) && 
             boardWithCellValues[1][1] !== '') {
             console.log('winner!');
-            return true;
+            return 'win';
         }
     }
 
@@ -150,6 +150,14 @@ const game = (function () {
         } else {
             playerTurnDiv.textContent = 'Game Over!!!'
             boardDiv.removeEventListener('click', clickHandlerBoard);
+            const winner = activePlayer.name === 'Player One' ? 'Player Two' : 'Player One';
+            const winnerAnnounce = document.createElement('h2');
+            if (gameEnd === 'win') {
+                winnerAnnounce.textContent = `${winner} wins!`
+            } else {
+                winnerAnnounce.textContent = "It's a tie!"
+            }
+            playerTurnDiv.insertAdjacentElement('afterend', winnerAnnounce);
         }
 
         refreshedBoard.forEach((row, index) => {

@@ -10,6 +10,10 @@
     justify-items: center;
 }
 
+.header {
+    text-align: center;
+}
+
 .board {
     width: clamp(100px, 50vh, 100vw);
     height: clamp(100px, 50vh, 100vw);
