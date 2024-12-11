@@ -1,0 +1,28 @@
+
+
+.container {
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    padding: 50px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 6fr;
+    justify-items: center;
+}
+
+.board {
+    width: 50%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+button {
+    height: 100%;
+    width: 100%;
+}

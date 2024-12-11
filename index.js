@@ -3,6 +3,21 @@ const board =  (function() {
     const cols = 3;
     const board = [];
 
+    function Cell() {
+        let value = '';
+
+        const markSquare = (player) => {
+            value = player;
+        };
+
+        const getValue = () => value;
+
+        return {
+            markSquare,
+            getValue
+        };
+    }
+
     for (let i = 0; i < rows; i++) {
         board[i] = [];
         for (let j = 0; j < cols; j++) {
@@ -29,21 +44,6 @@ const board =  (function() {
 
     return { getBoard, checkSquare, printBoard };
 })();
-
-function Cell() {
-    let value = '';
-
-    const markSquare = (player) => {
-        value = player;
-    };
-
-    const getValue = () => value;
-
-    return {
-        markSquare,
-        getValue
-    };
-}
 
 const game = (function () {
 
