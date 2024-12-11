@@ -33,7 +33,8 @@ const board =  (function() {
         // Check if square is already marked
         if (board[row][column].getValue() === '') {
             board[row][column].markSquare(player);
-        } else {return};
+            return true;
+        } else {return false};
     };
 
     const checkWin = () => {
@@ -118,7 +119,8 @@ const game = (function () {
         console.log(
             `Placing ${getActivePlayer().name}'s marker in row ${row}, column ${column}.`
         );
-        board.checkSquare(row, column, getActivePlayer().symbol);
+        const success = board.checkSquare(row, column, getActivePlayer().symbol);
+        if (!success) return;
         switchPlayerTurn();
         printNewRound();
     };
@@ -136,6 +138,7 @@ const game = (function () {
 
     const playerTurnDiv = document.querySelector('.turn');
     const boardDiv = document.querySelector('.board');
+    const refreshButton = document.querySelector('.refresh');
 
     const updateScreen = () => {
         boardDiv.textContent = '';
@@ -185,7 +188,13 @@ const game = (function () {
         updateScreen();
     }
 
+    function clickHandlerRefresh() {
+        window.location.reload();
+    }
+
     boardDiv.addEventListener('click', clickHandlerBoard);
+
+    refreshButton.addEventListener('click', clickHandlerRefresh);
 
     updateScreen();
 })();
