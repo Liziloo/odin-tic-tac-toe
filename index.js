@@ -38,6 +38,21 @@ const board =  (function() {
 
     const checkWin = () => {
         const boardWithCellValues = board.map((row) => row.map((cell) => cell.getValue()));
+
+        // Check for tie
+        let tieFound = true;
+        for (row of boardWithCellValues) {
+            for (cell of row) {
+                if (cell === '') {
+                    tieFound = false;
+                    break
+                }
+            }
+        }
+        if (tieFound) {
+            console.log('tie!')
+            return true;
+        }
         
         // Check for horizontal win
         for (row of boardWithCellValues) {
