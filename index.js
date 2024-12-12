@@ -90,15 +90,15 @@ const board =  (function() {
     return { getBoard, checkSquare, checkWin, printBoard };
 })();
 
-const game = (function () {
+function GameController(playerOneName = 'Player One', playerTwoName = 'Player Two') {
 
     const players = [
         {
-            name: 'Player One',
+            name: playerOneName,
             symbol: 'X'
         },
         {
-            name: 'Player Two',
+            name: playerTwoName,
             symbol: 'O'
         }
     ];
@@ -132,16 +132,44 @@ const game = (function () {
         playRound,
         getActivePlayer
     };
-})();
+}
 
 (function() {
 
     const playerTurnDiv = document.querySelector('.turn');
     const boardDiv = document.querySelector('.board');
-    const refreshButton = document.querySelector('.refresh');
+    const nameForm = document.querySelector('.name-form');
+    const startButton = document.querySelector('.start-button');
 
-    const updateScreen = () => {
+    startButton.addEventListener('click', clickStartHandler);
+
+    
+    const refreshButton = document.getElementById('refresh');
+    refreshButton.addEventListener('click', clickHandlerRefresh);
+    
+    
+    function clickHandlerRefresh() {
+        window.location.reload();
+    }
+
+    let game;
+
+    function clickStartHandler(e) {
+        e.preventDefault();
+        formData = new FormData(nameForm);
+        const playerOneName = formData.get('player-one');
+        const playerTwoName = formData.get('player-two');
+        console.log(playerOneName, playerTwoName);
+        game = GameController(playerOneName, playerTwoName);
+        updateScreen();
+    }
+
+    function updateScreen() {
+
         boardDiv.textContent = '';
+
+        nameForm.style.display = 'none';
+        refreshButton.style.display = 'block';
 
         const refreshedBoard = board.getBoard();
         const activePlayer = game.getActivePlayer();
@@ -176,25 +204,23 @@ const game = (function () {
                 newRow.appendChild(cellButton);
             });
             boardDiv.appendChild(newRow);      
-        })
+        });
+
+        
+
+
+        function clickHandlerBoard(e) {
+            const selectedRow = e.target.dataset.row;
+            const selectedColumn = e.target.dataset.column;
+            if (!selectedColumn || !selectedRow) return;
+    
+            game.playRound(selectedRow, selectedColumn);
+            updateScreen();
+        }
+    
+        boardDiv.addEventListener('click', clickHandlerBoard);
     }
 
-    function clickHandlerBoard(e) {
-        const selectedRow = e.target.dataset.row;
-        const selectedColumn = e.target.dataset.column;
-        if (!selectedColumn || !selectedRow) return;
+    
 
-        game.playRound(selectedRow, selectedColumn);
-        updateScreen();
-    }
-
-    function clickHandlerRefresh() {
-        window.location.reload();
-    }
-
-    boardDiv.addEventListener('click', clickHandlerBoard);
-
-    refreshButton.addEventListener('click', clickHandlerRefresh);
-
-    updateScreen();
 })();
