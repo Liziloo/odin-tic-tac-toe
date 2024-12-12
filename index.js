@@ -71,7 +71,6 @@ const board =  (function() {
             }
         }
         
-        
         // Check for diagonal win
         if (((boardWithCellValues[0][0] === boardWithCellValues[1][1] && boardWithCellValues[1][1] === boardWithCellValues[2][2]) || 
             (boardWithCellValues[0][2] === boardWithCellValues[1][1] && boardWithCellValues[1][1] === boardWithCellValues[2][0])) && 
@@ -143,10 +142,8 @@ function GameController(playerOneName = 'Player One', playerTwoName = 'Player Tw
 
     startButton.addEventListener('click', clickStartHandler);
 
-    
     const refreshButton = document.getElementById('refresh');
     refreshButton.addEventListener('click', clickHandlerRefresh);
-    
     
     function clickHandlerRefresh() {
         window.location.reload();
@@ -181,13 +178,13 @@ function GameController(playerOneName = 'Player One', playerTwoName = 'Player Tw
             playerTurnDiv.textContent = 'Game Over!!!'
             boardDiv.removeEventListener('click', clickHandlerBoard);
             const winner = activePlayer.name === 'Player One' ? 'Player Two' : 'Player One';
-            const winnerAnnounce = document.createElement('h2');
+            const winnerAnnounce = document.getElementById('winner-announce');
             if (gameEnd === 'win') {
                 winnerAnnounce.textContent = `${winner} wins!`
             } else {
                 winnerAnnounce.textContent = "It's a tie!"
             }
-            playerTurnDiv.insertAdjacentElement('afterend', winnerAnnounce);
+            winnerAnnounce.style.display = 'block';
         }
 
         refreshedBoard.forEach((row, index) => {
@@ -205,9 +202,6 @@ function GameController(playerOneName = 'Player One', playerTwoName = 'Player Tw
             boardDiv.appendChild(newRow);      
         });
 
-        
-
-
         function clickHandlerBoard(e) {
             const selectedRow = e.target.dataset.row;
             const selectedColumn = e.target.dataset.column;
@@ -219,7 +213,5 @@ function GameController(playerOneName = 'Player One', playerTwoName = 'Player Tw
     
         boardDiv.addEventListener('click', clickHandlerBoard);
     }
-
-    
 
 })();

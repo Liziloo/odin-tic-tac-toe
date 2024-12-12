@@ -8,6 +8,10 @@
     margin: 10px 0;
 }
 
+.winner-announce {
+    display: none;
+}
+
 .board {
     width: clamp(100px, 50vh, 100vw);
     height: clamp(100px, 50vh, 100vw);
