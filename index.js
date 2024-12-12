@@ -157,9 +157,8 @@ function GameController(playerOneName = 'Player One', playerTwoName = 'Player Tw
     function clickStartHandler(e) {
         e.preventDefault();
         formData = new FormData(nameForm);
-        const playerOneName = formData.get('player-one');
-        const playerTwoName = formData.get('player-two');
-        console.log(playerOneName, playerTwoName);
+        const playerOneName = formData.get('player-one') === '' ? undefined : formData.get('player-one');
+        const playerTwoName = formData.get('player-two') === '' ? undefined : formData.get('player-two');
         game = GameController(playerOneName, playerTwoName);
         updateScreen();
     }
