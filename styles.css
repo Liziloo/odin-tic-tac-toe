@@ -1,6 +1,12 @@
+html {
+    background-image: url('playground-unsplash.jpg');
+    background-size: 100%;
+}
+
 .container {
     height: 100vh;
     width: 100vw;
+    margin: 0;
     justify-items: center;
 }
 
