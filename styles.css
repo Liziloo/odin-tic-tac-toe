@@ -26,6 +26,10 @@
     grid-template-columns: 1fr 1fr 1fr;
 }
 
+.board, .row {
+    gap: 3px;
+}
+
 .board button {
     height: 100%;
     width: 100%;
@@ -33,4 +37,16 @@
 
 .refresh {
     display: none;
+}
+
+.color-0 {
+    background-color: blue;
+}
+
+.color-1 {
+    background-color: red;
+}
+
+.color-2 {
+    background-color: yellow;
 }

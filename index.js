@@ -102,6 +102,16 @@ function GameController(playerOneName = 'Player One', playerTwoName = 'Player Tw
         }
     ];
 
+    // Assign given number of colors randomly to cells in board
+    const randomColorArray = [];
+    const colorNum = 3;
+    const boardSize = 9;
+    for (let i = 0; i < boardSize; i++) {
+        randomColorArray.push(Math.floor(Math.random() * colorNum));
+    }
+
+    const getColor = (cellNum) => randomColorArray[cellNum] ;
+
     let activePlayer = players[0];
 
     const switchPlayerTurn = () => {
@@ -129,7 +139,8 @@ function GameController(playerOneName = 'Player One', playerTwoName = 'Player Tw
 
     return {
         playRound,
-        getActivePlayer
+        getActivePlayer,
+        getColor
     };
 }
 
@@ -192,8 +203,10 @@ function GameController(playerOneName = 'Player One', playerTwoName = 'Player Tw
             const newRow = document.createElement('div');
             newRow.classList.add('row');
             row.forEach((cell, index) => {
+                const cellNumber = rowNumber * 3 + index;
                 const cellButton = document.createElement('button');
                 cellButton.classList.add('cell');
+                cellButton.classList.add(`color-${game.getColor(cellNumber)}`);
                 cellButton.dataset.column = index;
                 cellButton.dataset.row = rowNumber;
                 if (cell.getValue() !== '') {
