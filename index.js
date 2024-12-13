@@ -196,10 +196,21 @@ function GameController(playerOneName = 'Player One', playerTwoName = 'Player Tw
                 cellButton.classList.add('cell');
                 cellButton.dataset.column = index;
                 cellButton.dataset.row = rowNumber;
-                cellButton.textContent = cell.getValue();
+                if (cell.getValue() !== '') {
+                    const buttonImage = document.createElement('img');
+                    buttonImage.classList.add('button-img');
+                    if (cell.getValue() === 'X') {
+                        buttonImage.src = 'x-symbol-svgrepo-com.svg';
+                    } else if (cell.getValue() === 'O') {
+                        buttonImage.src = 'circle-svgrepo-com.svg';
+                    }
+                    cellButton.appendChild(buttonImage);
+                }
+                
                 newRow.appendChild(cellButton);
+                boardDiv.appendChild(newRow);   
             });
-            boardDiv.appendChild(newRow);      
+               
         });
 
         function clickHandlerBoard(e) {
