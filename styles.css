@@ -26,6 +26,8 @@ html {
 .header {
     margin: 50px 0 0 0;
     text-align: center;
+    align-self: end;
+    padding-bottom: 1%;
 }
 
 .header h1 {
@@ -38,6 +40,7 @@ html {
 
 .board-and-button {
     justify-items: center;
+    align-self: start;
 }
 
 .board {
@@ -61,7 +64,11 @@ html {
     width: 100%;
     border: none;
     border-radius: 5px;
-    padding: 15px;
+    padding: 15%;
+}
+
+.button-img {
+    width: 100%;
 }
 
 .refresh {
@@ -80,4 +87,9 @@ html {
 
 .color-2 {
     background: radial-gradient(100% 14% ellipse at 50% -1px, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)), linear-gradient(to right, rgb(194, 194, 2), rgb(255, 255,0) 10% 90%, rgb(194, 194, 2))
+}
+
+.footer {
+    align-self: end;
+    padding-bottom: 10px;
 }
