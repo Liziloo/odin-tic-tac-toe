@@ -62,7 +62,6 @@ html {
     border: none;
     border-radius: 5px;
     padding: 15px;
-    background-image: repeating-linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 10% 90%, rgba(0, 0, 0, 0.5));
 }
 
 .refresh {
@@ -70,13 +69,15 @@ html {
 }
 
 .color-0 {
-    background-color: rgb(54, 54, 184);
+    background:
+    radial-gradient(70% 14% ellipse at 50% -10px, rgba(255, 255, 255, 0.952), rgba(255, 255, 255, 0)), linear-gradient(to right, rgb(20, 20, 70), rgb(54, 54, 184) 10% 90%, rgb(20, 20, 70));
+    
 }
 
 .color-1 {
-    background-color: rgb(247, 59, 59);
+    background: radial-gradient(70% 14% ellipse at 50% -10px, rgba(255, 255, 255, 0.952), rgba(255, 255, 255, 0)), linear-gradient(to right, rgb(104, 20, 20), rgb(247, 59, 59) 10% 90%, rgb(104, 20, 20));
 }
 
 .color-2 {
-    background-color: yellow;
+    background: radial-gradient(100% 14% ellipse at 50% -1px, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)), linear-gradient(to right, rgb(194, 194, 2), rgb(255, 255,0) 10% 90%, rgb(194, 194, 2))
 }
