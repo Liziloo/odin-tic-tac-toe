@@ -32,6 +32,11 @@ html {
 
 .header h1 {
     letter-spacing: 0.3rem;
+    font-size: clamp(1rem, 0.75rem + 1.5vw, 2rem);
+}
+
+.header h2 {
+    font-size: clamp(1rem, 0.5rem + 1.5vw, 1.6rem);
 }
 
 .winner-announce {
@@ -46,7 +51,7 @@ html {
 .board {
     width: clamp(100px, 50vh, 100vw);
     height: clamp(100px, 50vh, 100vw);
-    margin: 20px 0;
+    margin: 5% 0;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     gap: 5px;
@@ -86,7 +91,7 @@ html {
 }
 
 .color-2 {
-    background: radial-gradient(100% 14% ellipse at 50% -1px, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)), linear-gradient(to right, rgb(194, 194, 2), rgb(255, 255,0) 10% 90%, rgb(194, 194, 2))
+    background: radial-gradient(100% 14% ellipse at 50% -1px, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)), linear-gradient(to right, rgb(194, 194, 2), rgb(247, 247, 1) 10% 90%, rgb(194, 194, 2))
 }
 
 .footer {
