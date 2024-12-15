@@ -183,6 +183,8 @@ function GameController(playerOneName = 'Player One', playerTwoName = 'Player Tw
 
         const gameEnd = board.checkWin();
 
+        boardDiv.addEventListener('click', clickHandlerBoard);
+
         if (!gameEnd) {
             playerTurnDiv.textContent = `${activePlayer.name}'s turn.`;
         } else {
@@ -225,17 +227,17 @@ function GameController(playerOneName = 'Player One', playerTwoName = 'Player Tw
             });
                
         });
+    
+        
+    }
 
-        function clickHandlerBoard(e) {
-            const selectedRow = e.target.dataset.row;
-            const selectedColumn = e.target.dataset.column;
-            if (!selectedColumn || !selectedRow) return;
-    
-            game.playRound(selectedRow, selectedColumn);
-            updateScreen();
-        }
-    
-        boardDiv.addEventListener('click', clickHandlerBoard);
+    function clickHandlerBoard(e) {
+        const selectedRow = e.target.dataset.row;
+        const selectedColumn = e.target.dataset.column;
+        if (!selectedColumn || !selectedRow) return;
+
+        game.playRound(selectedRow, selectedColumn);
+        updateScreen();
     }
 
 })();
