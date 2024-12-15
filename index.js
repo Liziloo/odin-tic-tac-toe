@@ -213,7 +213,9 @@ function GameController(playerOneName = 'Player One', playerTwoName = 'Player Tw
                 cellButton.dataset.row = rowNumber;
                 if (cell.getValue() !== '') {
                     const buttonImage = document.createElement('img');
+                    const cardBack = document.createElement('img');
                     buttonImage.classList.add('button-img');
+                    cardBack.classList.add('card-back');
                     if (cell.getValue() === 'X') {
                         buttonImage.src = 'x-symbol-svgrepo-com.svg';
                     } else if (cell.getValue() === 'O') {
